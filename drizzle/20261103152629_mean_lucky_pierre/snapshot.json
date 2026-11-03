@@ -1,0 +1,154 @@
+{
+  "type": "diff",
+  "version": "9",
+  "dialect": "postgres",
+  "id": "1b22dc4c-99a1-4e05-a43c-954112b6d857",
+  "prevIds": [
+    "c34d5f91-a23f-4439-9398-a751a692d518"
+  ],
+  "footprints": [
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "inventory"
+      ],
+      "writes": [
+        "s|tbl|public.inventory",
+        "n|tbl|public.inventory",
+        "e|tbl|public.inventory",
+        "n|rel|public.inventory",
+        "n|type|public.inventory",
+        "n|rel|public.inventory_pkey"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "inventory"
+      ],
+      "writes": [
+        "s|fk|public.inventory.inventory_productId_products_id_fkey",
+        "n|fk|public.inventory.inventory_productId_products_id_fkey",
+        "e|fk|public.inventory.inventory_productId_products_id_fkey",
+        "n|con|public.inventory.inventory_productId_products_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.inventory",
+        "n|sch|public",
+        "n|tbl|public.products",
+        "n|sch|public",
+        "n|col|public.inventory.productId",
+        "n|col|public.products.id",
+        "e|uniqueness|public.products.id"
+      ]
+    }
+  ],
+  "deltas": [
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "name": "inventory",
+        "isRlsEnabled": false,
+        "entityType": "tables"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "inventory",
+        "name": "id",
+        "type": "integer",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": {
+          "type": "always",
+          "name": "inventory_id_seq",
+          "increment": "1",
+          "startWith": "1",
+          "minValue": "1",
+          "maxValue": "2147483647",
+          "cache": 1,
+          "cycle": false
+        },
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "inventory",
+        "name": "productId",
+        "type": "integer",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "inventory",
+        "name": "quantity",
+        "type": "integer",
+        "typeSchema": null,
+        "notNull": true,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "inventory",
+        "name": "inventory_productId_products_id_fkey",
+        "nameExplicit": false,
+        "columns": [
+          "productId"
+        ],
+        "schemaTo": "public",
+        "tableTo": "products",
+        "columnsTo": [
+          "id"
+        ],
+        "onUpdate": "NO ACTION",
+        "onDelete": "NO ACTION",
+        "entityType": "fks"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "inventory",
+        "name": "inventory_pkey",
+        "columns": [
+          "id"
+        ],
+        "nameExplicit": false,
+        "entityType": "pks"
+      }
+    }
+  ]
+}

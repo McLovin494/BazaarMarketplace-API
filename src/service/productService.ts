@@ -5,6 +5,7 @@ import {storeTable} from "../db/schemas/storeSchema.js";
 import {ApiError} from "../utils/ApiError.js";
 import {StatusCodes} from "http-status-codes/build/es/index.js";
 import {productsTable} from "../db/schemas/productSchema.js";
+import {inventoryTable} from "../db/schemas/inventorySchema.js";
 
 export const createProductService = async (data: CreateProductRequest,userId:number) => {
 
@@ -14,21 +15,27 @@ export const createProductService = async (data: CreateProductRequest,userId:num
         if (!store) {
             throw new ApiError(StatusCodes.NOT_FOUND, "Store not found")
         }
-        //check if logged in user owns the store
+        //check if logged-in user owns the store
         if (userId !== store.sellerId) {
             throw new ApiError(StatusCodes.FORBIDDEN, "Unauthorized action")
         }
-        const [newProduct] = await db.insert(productsTable).values({
-            shipping: data.shipping,
-            returnPolicy: data.returnPolicy,
-            delivery: data.delivery,
-            productName: data.productName,
-            price: String(data.price),
-            category: data.category,
-            description: data.description,
-            storeId: store.id,
-        }).returning()
-        return newProduct
+        return await db.transaction(async (tx) => {
+            const [createdProduct] = await tx.insert(productsTable).values({
+                shipping: data.shipping,
+                returnPolicy: data.returnPolicy,
+                delivery: data.delivery,
+                productName: data.productName,
+                price: String(data.price),
+                category: data.category,
+                description: data.description,
+                storeId: store.id,
+            }).returning()
+            await tx.insert(inventoryTable).values({
+                quantity: 0,
+                productId: createdProduct.id
+            })
+            return createdProduct
+        })
     } catch (e) {
         console.log(e)
         console.log("error", e)
