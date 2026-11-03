@@ -4,6 +4,7 @@ import {db} from "../db/db.js";
 import {storeTable} from "../db/schemas/storeSchema.js";
 import {eq, ilike, or} from "drizzle-orm";
 import {sellersTable} from "../db/schemas/sellerSchema.js";
+import {productsTable} from "../db/schemas/productSchema.js";
 
 export const createStoreService = async (sellerId: number, storeName: string, location: string, description: string) => {
     try {
@@ -118,18 +119,29 @@ export const getAllStoreService = async () => {
         console.log("error")
     }
 }
-export const getStoreByIdService=async(storeId:Number)=>{
+export const getStoreByIdService = async (storeId: Number) => {
     try {
-        const [store]=await db.select().from(storeTable).limit(1)
-        if(!store){
+        const [store] = await db.select().from(storeTable).limit(1)
+        if (!store) {
             throw new ApiError(
                 StatusCodes.NOT_FOUND,
                 "Store not found"
             )
         }
         return store
-    }catch (e) {
+    } catch (e) {
         console.log(e)
         console.log("error")
+    }
+}
+
+export const findProductsOfSingleStoreService = async (storeId: number) => {
+    try {
+        return await db
+            .select()
+            .from(productsTable)
+            .where(eq(productsTable.storeId, storeId));
+    } catch (e) {
+        console.log("error", e)
     }
 }

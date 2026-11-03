@@ -2,11 +2,12 @@ import {StoreRequest} from "../types/storeRequest.js";
 import {Request,Response} from "express";
 import {
     createStoreService,
-    deleteStoreService,
+    deleteStoreService, findProductsOfSingleStoreService,
     getAllStoreService, getStoreByIdService,
     updateStoreService
 } from "../service/storeService.js";
 import {StatusCodes} from "http-status-codes/build/es/index.js";
+import product from "../router/product.js";
 
 export const registerStore = async (req: Request<{},{},StoreRequest>, res: Response) => {
 const {storeName,location,description}=req.body
@@ -63,4 +64,9 @@ export const getStoreById=async(req:Request,res:Response)=>{
         message:"Store fetched",
         store
     })
+}
+export const findStoreProducts=async(req:Request,res:Response)=>{
+    const{storeId}=req.params
+    const products=await findProductsOfSingleStoreService(Number(storeId))
+    return res.status(StatusCodes.OK).json(products)
 }

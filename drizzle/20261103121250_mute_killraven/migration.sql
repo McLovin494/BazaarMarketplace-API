@@ -1,0 +1,1 @@
+CREATE TYPE "roles" AS ENUM('guest', 'user', 'admin');

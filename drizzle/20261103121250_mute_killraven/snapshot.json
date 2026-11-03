@@ -1,0 +1,76 @@
+{
+  "type": "diff",
+  "version": "9",
+  "dialect": "postgres",
+  "id": "c34d5f91-a23f-4439-9398-a751a692d518",
+  "prevIds": [
+    "1f8bd486-9ed5-4a38-9e4c-0ef77c928e2a"
+  ],
+  "footprints": [
+    {
+      "statementType": "create_enum",
+      "statementTarget": [
+        "enum",
+        "public",
+        "category"
+      ],
+      "writes": [
+        "s|enum|public.category",
+        "n|enum|public.category",
+        "e|enum|public.category",
+        "n|type|public.category"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_enum",
+      "statementTarget": [
+        "enum",
+        "public",
+        "roles"
+      ],
+      "writes": [
+        "s|enum|public.roles",
+        "n|enum|public.roles",
+        "e|enum|public.roles",
+        "n|type|public.roles"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    }
+  ],
+  "deltas": [
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "name": "category",
+        "values": [
+          "Beauty",
+          "Health",
+          "Electronics",
+          "Apparel",
+          "Home",
+          "Others"
+        ],
+        "entityType": "enums"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "name": "roles",
+        "values": [
+          "guest",
+          "user",
+          "admin"
+        ],
+        "entityType": "enums"
+      }
+    }
+  ]
+}

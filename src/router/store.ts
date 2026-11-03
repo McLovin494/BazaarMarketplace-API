@@ -1,6 +1,6 @@
 import {Router} from "express";
 import {
-    fetchAllStores,
+    fetchAllStores, findStoreProducts,
     getStoreById,
     markStoreDelete,
     registerStore,
@@ -13,4 +13,5 @@ router.patch("/store/:storeId",isAuthenticated,updateStoreDetails)
 router.delete("/store/:storeId",isAuthenticated,markStoreDelete)
 router.get("/store",fetchAllStores)
 router.get("/store/:storeId",getStoreById)
+router.get("/store/:storeId/products",findStoreProducts)
 export default  router
