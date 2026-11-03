@@ -1,4 +1,4 @@
-import {login, registerCustomer, registerSeller} from "../service/authService.js";
+import {login, registerCustomerService, registerSellerService} from "../service/authService.js";
 import {RegisterCustomer, RegisterRequest, RegisterSeller} from "../types/registerRequest.js";
 import {Request,Response} from "express"
 import {StatusCodes} from "http-status-codes/build/es/index.js";
@@ -6,7 +6,7 @@ import {ApiError} from "../utils/ApiError.js";
 export const customerRegister=async(req:Request<{},{},RegisterCustomer>,res:Response)=>{
     try{
         const{email,name,password}=req.body
-        const user=await registerCustomer(name,email,password)
+        const user=await registerCustomerService(name,email,password)
         console.log("customer",user)
 
         return res.status(StatusCodes.CREATED).json({
@@ -24,7 +24,7 @@ export const sellerRegister=async(req:Request<{},{},RegisterSeller>,res:Response
 
     try{
         const{email,name,password}=req.body
-        const user=await registerSeller(name,email,password)
+        const user=await registerSellerService(name,email,password)
         console.log("seller",user)
         return res.status(StatusCodes.CREATED).json({
             success:true,

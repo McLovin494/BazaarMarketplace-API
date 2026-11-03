@@ -1,0 +1,1 @@
+ALTER TABLE "storeTable" ADD COLUMN "deleted" boolean DEFAULT false;

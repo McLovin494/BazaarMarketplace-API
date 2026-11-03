@@ -1,0 +1,1 @@
+ALTER TABLE "sellers" RENAME COLUMN "sellerId" TO "userId";

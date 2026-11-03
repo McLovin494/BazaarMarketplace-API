@@ -1,0 +1,47 @@
+{
+  "type": "diff",
+  "version": "9",
+  "dialect": "postgres",
+  "id": "1ec30575-73fb-4754-8ce1-4c26de620ca0",
+  "prevIds": [
+    "385d8ecb-bffc-4750-be0a-0fe7fc3975c5"
+  ],
+  "footprints": [
+    {
+      "statementType": "add_column",
+      "statementTarget": [
+        "column",
+        "public",
+        "storeTable",
+        "deleted"
+      ],
+      "writes": [
+        "s|col|public.storeTable.deleted",
+        "n|col|public.storeTable.deleted",
+        "e|col|public.storeTable.deleted"
+      ],
+      "reads": [
+        "n|tbl|public.storeTable",
+        "n|sch|public"
+      ]
+    }
+  ],
+  "deltas": [
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "storeTable",
+        "name": "deleted",
+        "type": "boolean",
+        "typeSchema": null,
+        "notNull": false,
+        "dimensions": 0,
+        "default": "false",
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    }
+  ]
+}

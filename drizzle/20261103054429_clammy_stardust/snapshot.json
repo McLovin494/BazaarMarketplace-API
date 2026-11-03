@@ -1,0 +1,39 @@
+{
+  "type": "diff",
+  "version": "9",
+  "dialect": "postgres",
+  "id": "021905a4-8ff6-4592-9c6a-6b7c1ca71e3b",
+  "prevIds": [
+    "e40a143d-45ba-4fc3-893f-9ed3724f5a53"
+  ],
+  "footprints": [
+    {
+      "statementType": "rename_column",
+      "statementTarget": [
+        "column",
+        "public",
+        "sellers",
+        "userId"
+      ],
+      "writes": [
+        "s|col|public.sellers.userId",
+        "n|col|public.sellers.userId",
+        "s|col|public.sellers.sellerId",
+        "n|col|public.sellers.sellerId"
+      ],
+      "reads": [
+        "n|tbl|public.sellers",
+        "n|sch|public"
+      ]
+    }
+  ],
+  "deltas": [
+    {
+      "op": "rename",
+      "key": "columns\u0000[\"public\",\"sellers\",\"userId\"]",
+      "set": {
+        "name": "sellerId"
+      }
+    }
+  ]
+}
